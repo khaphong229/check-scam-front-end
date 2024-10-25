@@ -1,0 +1,60 @@
+@import '../../assets/scss/variable.scss';
+
+.warning {
+  margin-top: 60px;
+  &__title {
+    text-align: center;
+  }
+  &__list {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .warning__item {
+      background-color: $bgColor3;
+      border-radius: 16px;
+      padding: 16px;
+      backdrop-filter: blur(70px);
+      // &:active {
+      //   .warning__content {
+      //     display: block;
+      //   }
+      // }
+      .warning__header {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        gap: 8px;
+        > * {
+          pointer-events: none;
+        }
+        &-icon {
+          width: 24px;
+          height: 24px;
+          flex-shrink: 0;
+          &:active {
+            transform: rotate(90deg);
+            transition: tranform ease 0.2s;
+          }
+          > img {
+            display: inline-block;
+          }
+        }
+        .warning-item__title {
+          font-weight: 600;
+        }
+      }
+      .warning__content {
+        margin-left: 32px;
+        color: $subTextColor;
+        overflow: hidden;
+        height: 0;
+        transition: ease 0.2s;
+        &:active {
+          height: auto;
+          margin-top: 8px;
+        }
+      }
+    }
+  }
+}

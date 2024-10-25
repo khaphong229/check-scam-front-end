@@ -1,0 +1,46 @@
+@import '../../assets/scss/variable.scss';
+
+.content {
+  max-width: 664px;
+  width: 100%;
+  margin-inline: auto;
+  margin-top: 96px;
+  &__heading {
+    font-size: 50px;
+    font-weight: 800;
+    text-align: center;
+    color: transparent;
+    background: $gradientColor;
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+  &__desc {
+    color: $subTextColor;
+    margin-top: 20px;
+    text-align: center;
+  }
+  .form-search {
+    max-width: 500px;
+    width: 100%;
+    border-radius: 16px;
+    background-color: $bgColor3;
+    border: 1px solid #ffffff1a;
+    margin-top: 48px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    margin-inline: auto;
+    &__input {
+      flex: 1;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      padding-left: 19px;
+      padding-right: 24px;
+      color: $textColor;
+    }
+    &__btn {
+      flex-shrink: 0;
+    }
+  }
+}

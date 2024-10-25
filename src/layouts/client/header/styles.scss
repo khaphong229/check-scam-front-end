@@ -1,0 +1,42 @@
+@import '../../../assets/scss/variable.scss';
+
+.header {
+  margin-top: 25px;
+  margin-inline: 6%;
+  background-color: $bgColor2;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 40px;
+  &__logo {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    &-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: $textColor;
+    }
+  }
+  &__nav-list {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    .header__nav-item {
+      .header__nav-link {
+        color: $subTextColor;
+        font-weight: 500;
+        transition: ease 0.2s;
+        &:hover {
+          color: $textColor;
+          font-weight: 600;
+        }
+        &:active {
+          color: $textColor;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
