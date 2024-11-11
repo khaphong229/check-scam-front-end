@@ -9,6 +9,28 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 40px;
+  backdrop-filter: blur(70px);
+  &.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    animation: fadeDown linear 0.2s;
+  }
+  @keyframes fadeDown {
+    from {
+      transform: translateY(-20%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
   &__logo {
     display: flex;
     align-items: flex-end;

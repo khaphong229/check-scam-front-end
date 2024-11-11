@@ -6,7 +6,7 @@ import tseslint from 'typescript-eslint'
 import eslintPluginPrettier from 'eslint-plugin-prettier'
 
 export default tseslint.config(
-  { ignores: ['dist', 'ignores'] },
+  { ignores: ['dist', 'ignores', 'vite.config.ts'] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ['**/*.{ts,tsx}'],
@@ -21,6 +21,7 @@ export default tseslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
+      '@typescript-eslint/no-explicit-any': 'error',
       'prettier/prettier': [
         'warn',
         {
@@ -35,7 +36,7 @@ export default tseslint.config(
           jsxSingleQuote: true
         }
       ],
-      'no-console': 'error',
+      'no-console': 'warn',
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }]
     }
   }

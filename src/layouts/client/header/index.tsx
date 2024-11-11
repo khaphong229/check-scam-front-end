@@ -1,41 +1,56 @@
 import './styles.scss'
 import logo from '../../../assets/images/logo.png'
+import { useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
-function index() {
+function Header() {
+  const [isFixed, setIsFixed] = useState<boolean>(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsFixed(true)
+      } else {
+        setIsFixed(false)
+      }
+    }
+    handleScroll()
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <>
       {/* HEADER */}
-      <header className='header'>
-        <a href='' className='header__logo'>
+      <header className={`header ${isFixed ? 'fixed' : ''}`}>
+        <NavLink to='/' className='header__logo'>
           <img src={logo} alt='' className='header__logo-img' />
           <span className='header__logo-name'>Check Scam</span>
-        </a>
+        </NavLink>
         <ul className='header__nav-list'>
           <li className='header__nav-item'>
-            <a href='' className='header__nav-link'>
-              {' '}
-              Trang chủ{' '}
-            </a>
+            <NavLink to='/' className={({ isActive }) => `header__nav-link ${isActive ? 'active' : ''}`}>
+              Trang chủ
+            </NavLink>
           </li>
           <li className='header__nav-item'>
-            <a href='' className='header__nav-link'>
-              {' '}
-              Scammer{' '}
-            </a>
+            <NavLink to='/scammers' className={({ isActive }) => `header__nav-link ${isActive ? 'active' : ''}`}>
+              Scammer
+            </NavLink>
           </li>
           <li className='header__nav-item'>
-            <a href='' className='header__nav-link'>
+            <NavLink to='/' className={({ isActive }) => `header__nav-link ${isActive ? 'active' : ''}`}>
               Giới thiệu
-            </a>
+            </NavLink>
           </li>
         </ul>
-        <a href='#' className='header_btn btn'>
+        <NavLink to='/send' className='header_btn btn'>
           Gửi tố cáo
-        </a>
+        </NavLink>
       </header>
       {/* end HEADER */}
     </>
   )
 }
 
-export default index
+export default Header

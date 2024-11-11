@@ -1,4 +1,4 @@
-@import '../../assets/scss/variable.scss';
+@import '../../../../assets/scss/variable.scss';
 
 .alert-scam {
   background-color: $bgColor2;
@@ -58,5 +58,13 @@
         }
       }
     }
+  }
+}
+
+.ant-empty {
+  grid-column: 2/3;
+  margin-top: 30px;
+  .ant-empty-description {
+    color: $subTextColor;
   }
 }

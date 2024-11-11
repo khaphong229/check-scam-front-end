@@ -1,4 +1,4 @@
-@import '../../assets/scss/variable.scss';
+@import '../../../../assets/scss/variable.scss';
 
 .warning {
   margin-top: 60px;
@@ -15,6 +15,7 @@
       border-radius: 16px;
       padding: 16px;
       backdrop-filter: blur(70px);
+      z-index: -1;
       // &:active {
       //   .warning__content {
       //     display: block;
@@ -32,16 +33,17 @@
           width: 24px;
           height: 24px;
           flex-shrink: 0;
-          &:active {
-            transform: rotate(90deg);
-            transition: tranform ease 0.2s;
-          }
+          // &:active {
+          //   transform: rotate(90deg);
+          //   transition: tranform ease 0.2s;
+          // }
           > img {
             display: inline-block;
           }
         }
         .warning-item__title {
           font-weight: 600;
+          cursor: pointer;
         }
       }
       .warning__content {
