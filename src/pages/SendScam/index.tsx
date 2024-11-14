@@ -44,7 +44,7 @@ const SendScam: React.FC = () => {
     const bigData = {
       ...scammerData,
       ...senderData,
-      images: ['1', '2']
+      images: images
     }
     try {
       const response = await ScammerApi.createScammer(bigData)

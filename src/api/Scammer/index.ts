@@ -56,9 +56,34 @@ class ScammerApi {
       return defaultErrorResponse
     }
   }
+
   static async getAllScammer(): Promise<ApiResponse<ScammerDetail[]>> {
     const response = await instance.get<ApiResponse<ScammerDetail[]>>('/scammers')
     return response.data
+  }
+
+  static async searchScammer(text: string): Promise<ApiResponse<ScammerDetail>> {
+    const defaultErrorResponse: ApiResponse<ScammerDetail> = {
+      status: 500,
+      message: 'An error occurred',
+      success: false,
+      data: null
+    }
+    try {
+      const response = await instance.get<ApiResponse<ScammerDetail>>(`/scammers/search/${text}`)
+      return response.data
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        const axiosError = error as AxiosError<ErrorResponse>
+        return {
+          status: axiosError.response?.status || 500,
+          message: axiosError.response?.data?.message || axiosError.message || 'An error occurred',
+          success: false,
+          data: null
+        }
+      }
+      return defaultErrorResponse
+    }
   }
 }
 

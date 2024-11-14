@@ -1,30 +1,62 @@
 import React, { useState, useRef } from 'react'
 import close_icon from '../../../../assets/images/close.svg'
 import upload_icon from '../../../../assets/images/upload-icon.svg'
+import UploadApi from 'api/Upload'
+import { MessageCustom } from 'components/UI/Message'
 
 interface ImageUploadProps {
-  onImagesChange: (files: File[]) => void
+  onImagesChange: (files: string[]) => void
 }
 
 interface PreviewImage {
   url: string
-  file: File
+  fileUrl: string
 }
 
 const ImageUpload: React.FC<ImageUploadProps> = ({ onImagesChange }) => {
   const [previews, setPreviews] = useState<PreviewImage[]>([])
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const uploadImageApi = async (data: File): Promise<string> => {
+    try {
+      const res = await UploadApi.uploadImage(data)
+      if (res.message === 'Success') {
+        MessageCustom({
+          type: 'success',
+          content: 'Tải ảnh thành công'
+        })
+        return res.data
+      } else {
+        MessageCustom({
+          type: 'error',
+          content: res.message
+        })
+      }
+    } catch (error) {
+      console.log(error)
+      throw error
+    }
+  }
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const files = Array.from(e.target.files)
-      const newPreviews = files.map((file) => ({
-        url: URL.createObjectURL(file),
-        file
-      }))
+      const imageUrls: string[] = []
 
-      setPreviews((prev) => [...prev, ...newPreviews])
-      onImagesChange(files)
+      for (const file of files) {
+        const fileUrl = await uploadImageApi(file)
+
+        if (fileUrl !== null && fileUrl !== undefined) {
+          imageUrls.push(fileUrl)
+          const newPreview: PreviewImage = {
+            url: URL.createObjectURL(file),
+            fileUrl
+          }
+          setPreviews((prev) => [...prev, newPreview])
+        }
+      }
+
+      onImagesChange(imageUrls)
     }
   }
 

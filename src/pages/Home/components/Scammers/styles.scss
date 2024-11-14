@@ -51,6 +51,8 @@
       }
       .scammer__info {
         .scammer__name {
+          white-space: nowrap;
+          text-overflow: ellipsis;
           font-weight: 600;
         }
         .scammer__date {

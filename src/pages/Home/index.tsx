@@ -1,3 +1,4 @@
+import { ScammerProvider } from 'contexts/ScammerContext'
 import Content from './components/Content'
 import Scammers from './components/Scammers'
 import Warning from './components/Warning'
@@ -5,11 +6,13 @@ import Warning from './components/Warning'
 function Home() {
   return (
     <>
-      <Content />
-      <div className='container'>
-        <Scammers isHome={true} />
-        <Warning />
-      </div>
+      <ScammerProvider>
+        <Content />
+        <div className='container'>
+          <Scammers />
+          <Warning />
+        </div>
+      </ScammerProvider>
     </>
   )
 }
