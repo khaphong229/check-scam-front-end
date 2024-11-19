@@ -7,6 +7,8 @@ import ClientLayout from '../src/layouts/client/index.tsx'
 import Home from 'pages/Home/index.tsx'
 import ListScammers from 'pages/ListScammers/index.tsx'
 import SendScam from 'pages/SendScam/index.tsx'
+import AdminLayout from 'layouts/admin/index.tsx'
+import Scammers from './pages/Admin/Scammers'
 
 const router = createBrowserRouter([
   {
@@ -24,6 +26,20 @@ const router = createBrowserRouter([
       {
         path: 'send',
         element: <SendScam />
+      }
+    ]
+  },
+  {
+    path: '/admin',
+    element: <AdminLayout />,
+    children: [
+      {
+        path: '',
+        element: <Scammers />
+      },
+      {
+        path: 'pending',
+        element: <Scammers />
       }
     ]
   }

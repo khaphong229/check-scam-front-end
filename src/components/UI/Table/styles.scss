@@ -1,0 +1,92 @@
+@import '../../../assets/scss/variable.scss';
+
+svg {
+  color: $textColor;
+}
+
+.ant-table-wrapper,
+td,
+th,
+.ant-pagination {
+  font-family: 'Montserrat', sans-serif;
+  color: $textColor;
+  font-size: 16px;
+}
+
+.ant-table {
+  background: none !important;
+  color: $textColor !important;
+}
+
+.ant-table-cell {
+  &::before {
+    width: 0 !important;
+  }
+  background: none !important;
+  color: $textColor !important;
+  border-bottom: 0 !important;
+}
+
+.ant-table-thead {
+  background: $grayColor;
+}
+
+.ant-tag {
+  background: none !important;
+  border-color: $bgColor !important;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.ant-pagination {
+  &-item {
+    background-color: $grayColor !important;
+    border-color: $bgColor !important;
+    > a {
+      color: $textColor !important;
+    }
+  }
+  .ant-pagination-total-text {
+  }
+}
+
+.ant-select-selector {
+  background: $grayColor !important;
+  border: 0px !important;
+  color: $textColor !important;
+  span {
+    font-family: 'Montserrat', sans-serif;
+    color: $textColor;
+    font-size: 16px;
+  }
+}
+
+.body-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  &__text {
+    font-weight: 600;
+  }
+}
+
+.ant-input-affix-wrapper {
+  background: $grayColor !important;
+  border-color: $bgColor !important;
+  input {
+    color: $textColor !important;
+  }
+}
+
+.ant-table-placeholder {
+  background: $bgColor2;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}

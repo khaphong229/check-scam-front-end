@@ -19,6 +19,7 @@ interface ScammerData {
   option: 'victim' | 'helper'
   images: string[]
   createdAt: string
+  status: 'pending' | 'approved'
 }
 
 interface ScammerDetail extends ScammerData {
