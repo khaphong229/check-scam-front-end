@@ -1,7 +1,10 @@
 @import '../../../assets/scss/variable.scss';
 
-svg {
-  color: $textColor;
+.ant-pagination-item-link,
+.action-btn {
+  svg {
+    color: $textColor;
+  }
 }
 
 .ant-table-wrapper,
@@ -89,4 +92,9 @@ th,
   align-items: center;
   justify-content: center;
   gap: 10px;
+  svg {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }

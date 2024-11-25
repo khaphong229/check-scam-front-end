@@ -1,0 +1,5 @@
+@mixin reset-font {
+  font-family: 'Montserrat', sans-serif;
+  color: $textColor !important;
+  font-size: 16px !important;
+}

@@ -41,7 +41,7 @@ class ScammerApi {
     }
 
     try {
-      const response = await instance.post<ApiResponse<ScammerDetail>>('/scammers', data)
+      const response = await instance.post<ApiResponse<ScammerDetail>>('/denunciations', data)
       return response.data
     } catch (error) {
       if (error instanceof AxiosError) {
@@ -58,7 +58,12 @@ class ScammerApi {
   }
 
   static async getAllScammer(): Promise<ApiResponse<ScammerDetail[]>> {
-    const response = await instance.get<ApiResponse<ScammerDetail[]>>('/scammers')
+    const response = await instance.get<ApiResponse<ScammerDetail[]>>('/denunciations')
+    return response.data
+  }
+
+  static async deleteScammer(id: string): Promise<ApiResponse<null>> {
+    const response = await instance.delete<ApiResponse<null>>(`/denunciations/${id}`)
     return response.data
   }
 
@@ -70,7 +75,31 @@ class ScammerApi {
       data: null
     }
     try {
-      const response = await instance.get<ApiResponse<ScammerDetail>>(`/scammers/search/${text}`)
+      const response = await instance.get<ApiResponse<ScammerDetail>>(`/denunciations/search/${text}`)
+      return response.data
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        const axiosError = error as AxiosError<ErrorResponse>
+        return {
+          status: axiosError.response?.status || 500,
+          message: axiosError.response?.data?.message || axiosError.message || 'An error occurred',
+          success: false,
+          data: null
+        }
+      }
+      return defaultErrorResponse
+    }
+  }
+
+  static async updateStatusScammer(id: string): Promise<ApiResponse<ScammerDetail>> {
+    const defaultErrorResponse: ApiResponse<ScammerDetail> = {
+      status: 500,
+      message: 'An error occurred',
+      success: false,
+      data: null
+    }
+    try {
+      const response = await instance.patch<ApiResponse<ScammerDetail>>(`/denunciations/status/${id}`)
       return response.data
     } catch (error) {
       if (error instanceof AxiosError) {

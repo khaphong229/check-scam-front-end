@@ -1,0 +1,117 @@
+@import '../../../assets/scss/variable.scss';
+@import '../../../assets/scss/mixin.scss';
+
+.loginContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $bgColor;
+}
+
+.loginBox {
+  width: 100%;
+  max-width: 480px;
+  padding: 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    max-width: 90%;
+    padding: 1.5rem;
+  }
+}
+
+.loginTitle {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  color: $textColor;
+  margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+}
+
+.loginForm {
+  :global {
+    .ant-form-item-label > label {
+      @include reset-font;
+      color: $textColor;
+      font-weight: 500;
+    }
+
+    .ant-form-item-explain-error {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      color: #ff4d4f;
+    }
+
+    .ant-form-item {
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+.input {
+  :global {
+    .ant-input,
+    .ant-input-password {
+      height: 40px;
+      border-radius: 4px;
+      border: 1px solid $grayColor;
+
+      &:focus,
+      &:hover {
+        border-color: darken($grayColor, 10%);
+        box-shadow: 0 0 0 2px rgba($grayColor, 0.2);
+      }
+    }
+  }
+}
+
+.checkbox {
+  :global {
+    .ant-checkbox {
+      &-inner {
+        background-color: $grayColor;
+        border-color: $bgColor3;
+      }
+
+      &-checked .ant-checkbox-inner {
+        background-color: darken($grayColor, 10%);
+      }
+    }
+
+    .ant-checkbox-wrapper {
+      color: $textColor;
+      font-family: 'Montserrat', sans-serif;
+    }
+  }
+}
+
+.submitButton {
+  width: 100%;
+  height: 40px;
+  background: $grayColor !important;
+  border: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: darken($grayColor, 5%) !important;
+  }
+
+  :global {
+    span {
+      color: $textColor;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+    }
+  }
+}

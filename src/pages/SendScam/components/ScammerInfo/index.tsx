@@ -47,11 +47,11 @@ const ScammerInfo: React.FC<ScammerInfoProps> = ({ data, onChange }) => {
       <h2 className='form__heading'>Thông tin kẻ lừa đảo</h2>
       <div className='form__group-wrap'>
         <FormField
-          label='Tên chủ tài khoản'
+          label='Tên kẻ lừa đảo'
           id='nameScammer'
           value={data.nameScammer}
           onChange={handleChange('nameScammer')}
-          placeholder='Nhập tên chủ tài khoản'
+          placeholder='Nhập tên kẻ lừa đảo'
           required
           error={errors.nameScammer}
         />

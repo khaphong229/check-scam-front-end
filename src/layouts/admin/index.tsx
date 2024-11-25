@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {
   ClockCircleOutlined,
   GlobalOutlined,
+  LogoutOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   TeamOutlined
@@ -10,7 +11,9 @@ import { Button, Layout, Menu, theme } from 'antd'
 import './styles.scss'
 import logo from '../../assets/images/logo.png'
 import avt from '../../assets/images/avatar-2.png'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
+import { logoutUser } from 'utils/helpers'
+import { MessageCustom } from 'components/UI/Message'
 const { Header, Sider, Content } = Layout
 
 const AdminLayout: React.FC = () => {
@@ -18,6 +21,15 @@ const AdminLayout: React.FC = () => {
   const {
     token: { colorBgContainer, borderRadiusLG }
   } = theme.useToken()
+  const navigate = useNavigate()
+  const handleLogout = () => {
+    logoutUser()
+    MessageCustom({
+      type: 'success',
+      content: 'Đăng xuất thành công!'
+    })
+    navigate('/admin/login')
+  }
 
   return (
     <Layout>
@@ -45,6 +57,11 @@ const AdminLayout: React.FC = () => {
               key: '3',
               icon: <GlobalOutlined />,
               label: <Link to='/'>Vào Website</Link>
+            },
+            {
+              key: '4',
+              icon: <LogoutOutlined />,
+              label: <span onClick={() => handleLogout()}>Đăng xuất</span>
             }
           ]}
         />
@@ -63,7 +80,7 @@ const AdminLayout: React.FC = () => {
           />
           <div className='admin-wrap'>
             <img src={avt} alt='avt-admin' />
-            <span>Admin</span>
+            <span>{JSON.parse(localStorage.getItem('user')).name || 'ADMIN'}</span>
           </div>
         </Header>
         <Content

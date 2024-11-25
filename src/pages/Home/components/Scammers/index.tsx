@@ -68,9 +68,10 @@ const Scammers: React.FC = () => {
   const dayNow = getDayNow()
 
   const displayedScammers = searchResults.length > 0 ? searchResults : scammers
+  const statusScammers = displayedScammers.filter((scammer) => scammer.status === 'approved')
   const filteredScammers = isHome
-    ? displayedScammers.filter((scammer) => formatTime(scammer.createdAt) === dayNow)
-    : displayedScammers
+    ? statusScammers.filter((scammer) => formatTime(scammer.createdAt) === dayNow)
+    : statusScammers
 
   return (
     <>
